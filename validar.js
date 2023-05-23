@@ -16,6 +16,4 @@ const validateRoute = (route) => {
       return undefined;
 }
 
-module.exports={
-    validateRoute
-}
+module.exports = validateRoute
