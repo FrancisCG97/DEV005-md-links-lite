@@ -1,19 +1,22 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable no-console */
 const path = require('node:path');
 const fs = require('fs');
+// const identifyFiles = require('./r-archivos');
 
-
+// FUNCIÓN VALIDAR RUTA
 const validateRoute = (route) => {
+  if (fs.existsSync(route)) {
+    const ruta = route;
+    console.log(`La ruta es: ${ruta}`);
 
-    if (fs.existsSync(route)) {
-        const validatePath= path.isAbsolute(route);
-
-        if(validatePath) {
-            return route
-        } else { 
-            return path.resolve(route);
-      }
+    const validatePath = path.isAbsolute(route);
+    if (validatePath) {
+      return route;
     }
-      return undefined;
-}
+    return path.resolve(route);
+  }
+  return undefined;
+};
 
-module.exports = validateRoute
+module.exports = validateRoute;
