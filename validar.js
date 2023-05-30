@@ -2,7 +2,6 @@
 /* eslint-disable no-console */
 const path = require('node:path');
 const fs = require('fs');
-// const identifyFiles = require('./r-archivos');
 
 // FUNCIÓN VALIDAR RUTA
 const validateRoute = (route) => {

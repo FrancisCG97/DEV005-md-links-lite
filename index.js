@@ -6,7 +6,7 @@
 // AQUÍ DEBE IR FUNCIÓN MDLINKS
 
 const validateRoute = require('./validar');
-const identifyFiles = require('./r-archivos');
+const identifyFiles = require('./ident-archivos');
 
 // console.log(mdLinks);
 console.log(validateRoute('C:/Users/fcarr/OneDrive/Documentos/DEV005-md-links-lite/primeros-links.md'));
