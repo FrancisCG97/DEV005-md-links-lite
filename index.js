@@ -7,9 +7,11 @@
 
 const validateRoute = require('./validar');
 const identifyFiles = require('./ident-archivos');
+const validateLink = require('./validateLinks');
 
 // console.log(mdLinks);
-console.log(validateRoute('C:/Users/fcarr/OneDrive/Documentos/DEV005-md-links-lite/primeros-links.md'));
-identifyFiles('C:/Users/fcarr/OneDrive/Documentos/DEV005-md-links-lite/primeros-links.md').then((lectura) => {
+console.log(validateRoute('README.md'));
+identifyFiles('README.md').then((lectura) => {
   console.log(lectura);
 });
+validateLink('https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Regular_Expressions');

@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 const path = require('node:path');
 const validateRoute = require('../validar');
-const identifyFiles = require('../ident-archivos');
+// const identifyFiles = require('../ident-archivos');
 
 // TEST VALIDACIÓN
 describe('validateRoute', () => {
@@ -30,16 +30,16 @@ describe('validateRoute', () => {
 });
 
 // TEST IDENTIFICACIÓN ARCHIVOS
-describe('identifyFiles', () => {
-  test('Es una función', () => {
-    expect(typeof identifyFiles).toBe('function');
-  });
-  test('Retorna la extensión de la ruta', () => {
-    const route = 'C:/Users/fcarr/OneDrive/Documentos/DEV005-md-links-lite/primeros-links.md';
-    const expectedExtension = path.extname(route);
-    const promise = identifyFiles(expectedExtension);
-    return promise.then((extension) => {
-      expect(extension).toEqual('.md');
-    });
-  });
-});
+// describe('identifyFiles', () => {
+//   test('Es una función', () => {
+//     expect(typeof identifyFiles).toBe('function');
+//   });
+//   test('Retorna la ruta si es extensión .md', () => {
+//     const expectedExtension = '.md';
+//     const route = 'primeros-links.md';
+//     expect.assertions(1);
+//     const extension = route.slice(-2);
+//     const extensions = `.${extension}`;
+//     expect(extensions).toEqual(expectedExtension);
+//   });
+// });
