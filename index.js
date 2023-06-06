@@ -4,20 +4,26 @@
 
 const validateRoute = require('./validateRoute');
 const identifyFiles = require('./identFiles');
-const validLink = require('./validateLinks');
+const showValidLink = require('./identFiles');
+const validLink = require('./identFiles');
 
 // AQUÍ DEBE IR FUNCIÓN MDLINKS
-const mdLinks = (route) => {
+// const mdLinks = (route, options) => {
+//   const validPath = validateRoute(route);
+//   return new Promise((resolve, reject) => {
+//     if (!route || !validPath) reject('Invalid route');
+//     const links = validLink();
+//   });
+// };
 
-};
-
+// mdLinks('./README.md', { validate: true })
+//   .then((Response) => console.log(Response))
+//   .catch((err) => console.log(err));
 // console.log(mdLinks);
-console.log(validateRoute('README.md'));
-identifyFiles('README.md').then((links) => {
+
+console.log(validateRoute('mdPrueba/R-songs.md'));
+identifyFiles('mdPrueba/R-songs.md').then((links) => {
   console.log(links);
 });
-// validLink({
-//   href: 'https://www.youtube.com/watch?v=OWx8V4I8sis',
-//   text: 'One Small Step',
-//   file: 'A-songs.md',
-// });
+console.log(validLink('mdPrueba/R-songs.md'));
+// console.log(showValidLink('mdPrueba/FV-songs.md'));
