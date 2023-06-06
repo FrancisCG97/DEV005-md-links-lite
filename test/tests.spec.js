@@ -1,8 +1,10 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable prefer-regex-literals */
 /* eslint-disable no-undef */
+const fs = require('fs');
 const path = require('node:path');
-const validateRoute = require('../validar');
-// const identifyFiles = require('../ident-archivos');
+const validateRoute = require('../validateRoute');
+const identifyFiles = require('../identFiles');
 
 // TEST VALIDACIÓN
 describe('validateRoute', () => {
@@ -16,7 +18,7 @@ describe('validateRoute', () => {
     expect(resultado).toBe(resultadoEsperado);
   });
   test('Convierte ruta relativa a absoluta', () => {
-    const route = 'primeros-links.md';
+    const route = 'A-songs.md';
     const resultadoEsperado = path.resolve(route);
     const resultado = validateRoute(route);
     expect(resultado).toBe(resultadoEsperado);
@@ -30,16 +32,33 @@ describe('validateRoute', () => {
 });
 
 // TEST IDENTIFICACIÓN ARCHIVOS
-// describe('identifyFiles', () => {
-//   test('Es una función', () => {
-//     expect(typeof identifyFiles).toBe('function');
-//   });
-//   test('Retorna la ruta si es extensión .md', () => {
-//     const expectedExtension = '.md';
-//     const route = 'primeros-links.md';
-//     expect.assertions(1);
-//     const extension = route.slice(-2);
-//     const extensions = `.${extension}`;
-//     expect(extensions).toEqual(expectedExtension);
-//   });
-// });
+describe('identifyFiles', () => {
+  it('Debe identificar links en un archivo .md', () => {
+    const route = 'A-songs.md'; // Ruta a un archivo .md existente para el test
+    const readFileMock = jest.spyOn(fs.promises, 'readFile');
+    const expectedLinksInfo = [
+      { href: 'https://www.youtube.com/watch?v=LBgTiLMTlxo', text: '[Day Eleven: Love]', file: route },
+      { href: 'https://www.youtube.com/watch?v=OWx8V4I8sis', text: '[One Small Step]', file: route },
+    ];
+    const fileContent = `
+      Texto [Day Eleven: Love](https://www.youtube.com/watch?v=LBgTiLMTlxo) y [One Small Step](https://www.youtube.com/watch?v=OWx8V4I8sis)..
+    `;
+
+    // Simula la lectura del archivo .md
+    readFileMock.mockResolvedValue(fileContent);
+
+    // Ejecuta la función a probar
+    return identifyFiles(route)
+      .then((result) => {
+        expect(result).toEqual(expectedLinksInfo);
+        expect(readFileMock).toHaveBeenCalledWith(route, 'utf8');
+      });
+  });
+
+  // it('Debe rechazar con un mensaje de error para los archivos que no son .md', () => {
+  //   const route = 'validar.js'; // Ruta a un archivo no-.md existente para el test
+
+  //   // Ejecuta la función a probar
+  //   return expect(identifyFiles(route)).rejects.toEqual('No es una ruta valida');
+  // });
+});
