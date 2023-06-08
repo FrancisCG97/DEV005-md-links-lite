@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 /* eslint-disable no-console */
 const path = require('node:path');
 const fs = require('fs');
@@ -12,8 +11,9 @@ const validateRoute = (route) => {
     const validatePath = path.isAbsolute(route);
     if (validatePath) {
       return route;
+    } if (!validatePath) {
+      return path.resolve(route);
     }
-    return path.resolve(route);
   }
   return undefined;
 };
