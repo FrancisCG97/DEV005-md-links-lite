@@ -26,7 +26,7 @@ const identifyFiles = (route) => new Promise((resolve, reject) => {
         }),
     );
   }
-  reject('No es una ruta valida');
+  reject('No es una ruta válida');
 });
 
 module.exports = identifyFiles;

@@ -11,9 +11,8 @@ const validateRoute = (route) => {
     const validatePath = path.isAbsolute(route);
     if (validatePath) {
       return route;
-    } if (!validatePath) {
-      return path.resolve(route);
     }
+    return path.resolve(route);
   }
   return undefined;
 };

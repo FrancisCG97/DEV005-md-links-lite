@@ -5,7 +5,7 @@ const validLink = require('./validateLink');
 const mdLinks = (path, options) => new Promise((resolve, reject) => {
   const linkExtract = identifyFiles(path);
   if (!validateRoute(path)) {
-    reject('Ruta invalida');
+    reject('Ruta inválida');
   } else if (options.validate) {
     linkExtract.then((links) => Promise.all(links.map((link) => validLink(link))))
       .then((validatedLinks) => {
@@ -25,10 +25,12 @@ const mdLinks = (path, options) => new Promise((resolve, reject) => {
   }
 });
 
-mdLinks('mdPrueba/R-songs.md', { validate: false })
+mdLinks('mdPrueba/A-songs.md', { validate: true })
   .then((links) => {
     console.log(links);
   })
   .catch((error) => {
     console.error(error);
   });
+
+module.exports = mdLinks;

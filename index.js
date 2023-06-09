@@ -5,7 +5,7 @@ const validLink = require('./validateLink');
 const mdLinks = (route, options) => {
   const validRoute = identifyFiles(route);
   if (!validRoute) {
-    throw new Error('Ruta invalida');
+    throw new Error('Ruta inválida');
   }
   const linksInFile = identifyFiles('mdPrueba/A-songs.md');
   if (!options) {
